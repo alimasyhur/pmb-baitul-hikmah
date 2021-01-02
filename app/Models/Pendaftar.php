@@ -9,6 +9,13 @@ class Pendaftar extends Model
 {
     use HasFactory;
 
+    const STATUS_BELUM_BAYAR = 'Belum Bayar';
+    const STATUS_SUDAH_BAYAR = 'Sudah Bayar';
+    const STATUS_BELUM_CETAK_BUKTI = 'Belum Cetak Bukti Daftar';
+    const STATUS_SUDAH_CETAK_BUKTI = 'Sudah Cetak Bukti Daftar';
+    const STATUS_BELUM_CETAK_KARTU = 'Belum Cetak Kartu Peserta';
+    const STATUS_SUDAH_CETAK_KARTU = 'Sudah Cetak Kartu Peserta';
+
     protected $fillable = [
         'no_pendaftaran',
         'email',

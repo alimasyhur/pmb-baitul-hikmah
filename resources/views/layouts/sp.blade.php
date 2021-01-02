@@ -34,15 +34,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="/" class="nav-link">Beranda</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/check-status" class="nav-link">Cek Status PMB</a>
-                        </li>
+                        @if(session('no_pendaftaran'))
                         <li class="nav-item dropdown">
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Cetak</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                 <li><a href="#" class="dropdown-item">Bukti Pendaftaran</a></li>
                                 <li><a href="#" class="dropdown-item">Kartu Peserta PMB</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pendaftar-logout" class="nav-link">Logout ({{ session('no_pendaftaran') }})</a>
+                            @else
+                            <a href="/pendaftar-login" class="nav-link">Login</a>
+                            @endif
                         </li>
                     </ul>
                 </div>
@@ -57,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            
+
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -91,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
 
     <script src="{{ asset('js/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
     <script src="{{ asset('js/demo.js') }}" defer></script>
 </body>

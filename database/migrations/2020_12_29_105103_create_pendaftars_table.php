@@ -34,6 +34,7 @@ class CreatePendaftarsTable extends Migration
             $table->string('file_rekomendasi')->nullable();
             $table->string('file_izin_ortu')->nullable();
             $table->string('file_cv')->nullable();
+            $table->string('status')->nullable();
             $table->boolean('is_bayar')->default(0);
             $table->boolean('is_cetak_bukti_daftar')->default(0);
             $table->boolean('is_cetak_kartu')->default(0);

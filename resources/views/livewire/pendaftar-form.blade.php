@@ -3,6 +3,11 @@
 </div>
 <div class="card-body">
     <h3 class="card-title">Silakan Isi FORMULIR dengan Lengkap & Data yang Benar</h3>
+    @if(Session::has('errors'))
+    <div class="alert alert-danger">
+        {{Session::get('errors')}}
+    </div>
+    @endif
 
     <p class="card-text">
         <ol>
@@ -11,7 +16,7 @@
         </ol>
     </p>
 
-    <form wire:submit.prevent="submit">
+    <form wire:submit.prevent="savePendaftar">
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="inputEmail">Email</label>

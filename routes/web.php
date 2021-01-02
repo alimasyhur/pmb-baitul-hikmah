@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [PendaftarController::class, 'home'])->name('home');
+Route::post('/daftar', [PendaftarController::class, 'daftar'])->name('daftar');
+Route::post('/status-daftar', [PendaftarController::class, 'statusDaftar'])->name('status-daftar');
 Route::get('/success-daftar', [PendaftarController::class, 'successDaftar'])->name('success-daftar');
 Route::get('/check-status', [PendaftarController::class, 'checkStatus'])->name('check-status');
+Route::get('/pendaftar-login', [PendaftarController::class, 'pendaftarLogin'])->name('pendaftar-login');
+Route::get('/pendaftar-logout', [PendaftarController::class, 'pendaftarLogout'])->name('pendaftar-logout');
 
 Auth::routes();
 

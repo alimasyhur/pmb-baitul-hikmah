@@ -52,46 +52,47 @@ class PendaftarForm extends Component
         'upload_rekomendasi' => 'file|mimes:pdf|max:102400',
     ];
 
-    public function submit(PendaftarService $pendaftarService, JalurMasukService $jalurMasukService)
+    public function savePendaftar(PendaftarService $pendaftarService, JalurMasukService $jalurMasukService)
     {
-        session()->flush();
+        dd('INI');
+        // session()->flush();
 
-        $this->email = 'jegrag4ever@gmail.com';
-        $this->jenis_pendaftar = 'Pribadi';
-        $this->no_hp = '08156558085';
-        $this->asal_sekolah = 'SMA Negeri 3 Surakarta';
-        $this->alamat_sekolah = 'Solo';
-        $this->tempat_lahir = 'Sukoharjo';
-        $this->tanggal_lahir = '10-07-1994';
-        $this->nama = 'Muhammad Ali Masyhur Khoiruddin';
-        $this->alamat = 'Sukoharjo';
-        $this->nama_ayah = 'Safawi';
-        $this->nama_ibu = 'Nuryani Rahayu';
-        $this->rekomendasi = 'Tokoh Masyarakat';
+        // $this->email = 'jegrag4ever@gmail.com';
+        // $this->jenis_pendaftar = 'Pribadi';
+        // $this->no_hp = '08156558085';
+        // $this->asal_sekolah = 'SMA Negeri 3 Surakarta';
+        // $this->alamat_sekolah = 'Solo';
+        // $this->tempat_lahir = 'Sukoharjo';
+        // $this->tanggal_lahir = '10-07-1994';
+        // $this->nama = 'Muhammad Ali Masyhur Khoiruddin';
+        // $this->alamat = 'Sukoharjo';
+        // $this->nama_ayah = 'Safawi';
+        // $this->nama_ibu = 'Nuryani Rahayu';
+        // $this->rekomendasi = 'Tokoh Masyarakat';
 
-        $data = $this->validate();
-        $jalurAktif = $jalurMasukService->getJalurAktif();
-        $noPendaftaran = $pendaftarService->getNoPendaftaran();
-        $angkatan = $jalurAktif->tahun;
+        // $data = $this->validate();
+        // $jalurAktif = $jalurMasukService->getJalurAktif();
+        // $noPendaftaran = $pendaftarService->getNoPendaftaran();
+        // $angkatan = $jalurAktif->tahun;
 
-        $data = array_merge($data, [
-            'id_jalur' => $jalurAktif->id,
-            'angkatan' => $angkatan,
-            'no_pendaftaran' => $noPendaftaran,
-        ]);
+        // $data = array_merge($data, [
+        //     'id_jalur' => $jalurAktif->id,
+        //     'angkatan' => $angkatan,
+        //     'no_pendaftaran' => $noPendaftaran,
+        // ]);
         
-        $data['file_foto'] = $this->upload_foto->store("$angkatan/photos", 'public');
-        $data['file_izin_ortu'] = $this->upload_surat_izin_ortu->store("$angkatan/surat-izin-ortu", 'public');
-        $data['file_cv'] = $this->upload_cv->store("$angkatan/cv", 'public');
-        $data['file_ijazah'] = $this->upload_ijazah->store("$angkatan/ijazah", 'public');
-        $data['file_raport'] = $this->upload_raport->store("$angkatan/raport", 'public');
-        $data['file_rekomendasi'] = $this->upload_rekomendasi->store("$angkatan/rekomendasi", 'public');
+        // $data['file_foto'] = $this->upload_foto->store("$angkatan/photos", 'public');
+        // $data['file_izin_ortu'] = $this->upload_surat_izin_ortu->store("$angkatan/surat-izin-ortu", 'public');
+        // $data['file_cv'] = $this->upload_cv->store("$angkatan/cv", 'public');
+        // $data['file_ijazah'] = $this->upload_ijazah->store("$angkatan/ijazah", 'public');
+        // $data['file_raport'] = $this->upload_raport->store("$angkatan/raport", 'public');
+        // $data['file_rekomendasi'] = $this->upload_rekomendasi->store("$angkatan/rekomendasi", 'public');
 
-        Pendaftar::create($data);
+        // Pendaftar::create($data);
         
-        session()->put('no_pendaftaran', $noPendaftaran);
+        // session()->put('no_pendaftaran', $noPendaftaran);
         
-        return redirect()->to('/success-daftar');
+        // return redirect()->to('/success-daftar')->withErrors('errors');
     }
 
     public function render(JalurMasukService $jalurMasukService)
