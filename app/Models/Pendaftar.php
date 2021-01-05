@@ -30,6 +30,7 @@ class Pendaftar extends Model
         'nama_ayah',
         'nama_ibu',
         'rekomendasi',
+        'file_pembayaran',
         'file_raport',
         'file_foto',
         'file_ijazah',
@@ -41,6 +42,7 @@ class Pendaftar extends Model
         'is_cetak_kartu',
         'is_diterima',
         'angkatan',
+        'status',
         'id_jalur',
     ];
 }

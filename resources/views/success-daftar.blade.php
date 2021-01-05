@@ -23,6 +23,10 @@
                                 <td>{{ $pendaftar->tanggal_lahir }}</td>
                             </tr>
                             <tr>
+                                <td>Nama</td>
+                                <td>{{ $pendaftar->nama }}</td>
+                            </tr>
+                            <tr>
                                 <td>Status Pembayaran</td>
                                 <td>{{ $status_bayar }}</td>
                             </tr>
@@ -32,12 +36,11 @@
                     <p class="card-text">
                         <b>Silakan Lakukan Langkah dibawah ini untuk menyelesaikan tahapan Pendaftaran Anda:</b>
                         <ol>
-                            <li>Simpan baik-baik nomor Pendaftaran Anda. Nomor ini akan digunakan sebagai identitas Anda selama PMB</li>
-                            <li>Lakukan Cetak Bukti Pendaftaran Anda. Simpan baik-baik Bukti Pendaftaran Anda. <b>Cetak Bukti Pendaftaran</b></li>
-                            <li>Lakukan Pembayaran Biaya Pendaftaran dan Biaya Ujian. <b>Cetak Cara Pembayaran</b></li>
-                            <li>Upload Bukti Pembayaran Anda. <b>Klik disini</b></li>
-                            <li>Lakukan Konfirmasi Bukti Pembayaran Anda untuk mempercepat verifikasi Data Pendaftaran Anda. <b>Konfirmasi WA</b></li>
-                            <li>Lakukan Cetak Kartu Peserta PMB - Baitul Hikmah. <b>Cetak Kartu Peserta</b></li>
+                            <li>Lakukan Cetak Bukti Pendaftaran Anda. Simpan baik-baik Bukti Pendaftaran Anda. <a href="/cetak-bukti-daftar" target="_blank">Cetak Bukti Pendaftaran</a></li>
+                            <li>Lakukan Pembayaran Biaya Pendaftaran dan Biaya Ujian. <b>Petunjuk Cara Pembayaran</b></li>
+                            <li>Upload Bukti Pembayaran Anda. @if($pendaftar->is_bayar !== 2)<a href="/pembayaran">Klik disini</a> @else <label class="btn bg-gradient-primary btn-xs">Anda sudah upload</label> @endif</li>
+                            <li>Lakukan Konfirmasi Bukti Pembayaran Anda untuk mempercepat verifikasi Data Pendaftaran Anda. @if($pendaftar->is_bayar !== 2) <a href="/preview-kartu-peserta" target="_blank"><b>Konfirmasi WA</b></a> @endif</li>
+                            <li>Lakukan Cetak Kartu Peserta PMB - Baitul Hikmah. @if($pendaftar->is_bayar == 2) <a href="/preview-kartu-peserta" target="_blank">Cetak Kartu Peserta</a> @endif</li>
                         </ol>
                     </p>
                 </div>

@@ -31,10 +31,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Beranda</a>
-                        </li>
                         @if(session('no_pendaftaran'))
+                        <li class="nav-item">
+                            <a href="/success-daftar" class="nav-link">Status</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Cetak</a>
                             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
@@ -44,9 +44,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li class="nav-item">
                             <a href="/pendaftar-logout" class="nav-link">Logout ({{ session('no_pendaftaran') }})</a>
-                            @else
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Formulir Pendaftaran</a>
+                        </li>
+                        <li>
                             <a href="/pendaftar-login" class="nav-link">Login</a>
-                            @endif
+                        </li>
+                        @endif
                         </li>
                     </ul>
                 </div>

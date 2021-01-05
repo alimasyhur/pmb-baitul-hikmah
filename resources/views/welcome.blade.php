@@ -13,10 +13,10 @@
                     <h3 class="card-title">Silakan Isi FORMULIR dengan Lengkap & Data yang Benar</h3>
 
                     <p class="card-text">
-                        <ol>
-                            <li>Mulai segala sesuatu dengan Bismillah.</li>
-                            <li>Perhatikan penggunaan huruf besar dan kecil. Jangan menjawab dengan huruf capital semua guna memudahkan kami dalam merekap data</li>
-                        </ol>
+                    <ol>
+                        <li>Mulai segala sesuatu dengan Bismillah.</li>
+                        <li>Perhatikan penggunaan huruf besar dan kecil. Jangan menjawab dengan huruf capital semua guna memudahkan kami dalam merekap data</li>
+                    </ol>
                     </p>
 
                     @if($errors->any())
@@ -48,7 +48,11 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="jenis_utusan">Utusan Pendaftar</label>
-                                <input type="text" class="form-control @error('jenis_utusan') is-invalid @enderror" id="jenis_utusan" placeholder="Utusan Pendaftar" name="jenis_pendaftar">
+                                <select class="form-control @error('jenis_utusan') is-invalid @enderror" id="jenis_utusan" name="jenis_pendaftar">
+                                    <option value="">-- Pilih Jenis Utusan --</option>
+                                    <option value="Utusan Lembaga">Utusan Lembaga</option>
+                                    <option value="Pribadi">Pribadi</option>
+                                </select>
                                 @error('jenis_pendaftar') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
@@ -68,7 +72,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="tanggal_lahir">Tanggal Lahir</label>
-                                <input type="text" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="inputName" placeholder="Masukkan Tanggal Lahir" name="tanggal_lahir">
+                                <input type="date" placeholder="YYYY-MM-DD" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="inputName" placeholder="Masukkan Tanggal Lahir" name="tanggal_lahir">
                                 @error('tanggal_lahir') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -81,7 +85,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="asal_sekolah">Asal Sekoalah/Ma'had</label>
+                                <label for="asal_sekolah">Asal Sekolah/Ma'had</label>
                                 <input type="text" class="form-control @error('asal_sekolah') is-invalid @enderror id=" asal_sekolah" placeholder="Masukkan Asal Sekolah/Ma'had" name="asal_sekolah">
                                 @error('asal_sekolah') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>

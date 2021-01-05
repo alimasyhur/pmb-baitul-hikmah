@@ -22,12 +22,13 @@ class CreatePendaftarsTable extends Migration
             $table->string('asal_sekolah');
             $table->string('alamat_sekolah');
             $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
+            $table->date('tanggal_lahir');
             $table->string('nama');
             $table->text('alamat');
             $table->string('nama_ayah');
             $table->string('nama_ibu');
             $table->string('rekomendasi');
+            $table->string('file_pembayaran')->nullable();
             $table->string('file_raport')->nullable();
             $table->string('file_foto')->nullable();
             $table->string('file_ijazah')->nullable();

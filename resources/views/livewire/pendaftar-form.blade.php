@@ -67,7 +67,7 @@
 
         <div class="row">
             <div class="form-group col-md-6">
-                <label for="inputName">Asal Sekoalah/Ma'had</label>
+                <label for="inputName">Asal Sekolah/Ma'had</label>
                 <input type="text" class="form-control" id="inputName" placeholder="Masukkan Asal Sekolah/Ma'had" wire:model="asal_sekolah">
                 @error('asal_sekolah') <span class="text-danger">{{ $message }}</span> @enderror
             </div>

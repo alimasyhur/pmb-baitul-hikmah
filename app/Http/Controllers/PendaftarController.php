@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JalurMasuk;
 use App\Models\Pendaftar;
 use App\Services\JalurMasukService;
 use App\Services\PendaftarService;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,16 +15,21 @@ class PendaftarController extends Controller
 
     protected $jalurMasukService;
     protected $pendaftarService;
+    protected $pdf;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(JalurMasukService $jalurMasukService, PendaftarService $pendaftarService)
-    {
+    public function __construct(
+        JalurMasukService $jalurMasukService,
+        PendaftarService $pendaftarService,
+        PDF $pdf
+    ) {
         $this->jalurMasukService = $jalurMasukService;
         $this->pendaftarService = $pendaftarService;
+        $this->pdf = $pdf;
     }
 
     public function home()
@@ -37,12 +44,10 @@ class PendaftarController extends Controller
     public function daftar(Request $request)
     {
         $request['email'] = 'jegrag4ever@gmail.com';
-        $request['jenis_pendaftar'] = 'Pribadi';
         $request['no_hp'] = '08156558085';
         $request['asal_sekolah'] = 'SMA Negeri 3 Surakarta';
         $request['alamat_sekolah'] = 'Solo';
         $request['tempat_lahir'] = 'Sukoharjo';
-        $request['tanggal_lahir'] = '10-07-1994';
         $request['nama'] = 'Muhammad Ali Masyhur Khoiruddin';
         $request['alamat'] = 'Sukoharjo';
         $request['nama_ayah'] = 'Safawi';
@@ -57,18 +62,20 @@ class PendaftarController extends Controller
             'asal_sekolah' => 'required|max:100',
             'alamat_sekolah' => 'required|max:255',
             'tempat_lahir' => 'required|max:100',
-            'tanggal_lahir' => 'required|max:100',
+            'tanggal_lahir' => 'required|date',
             'alamat' => 'required|max:255',
             'nama_ayah' => 'required|max:100',
             'nama_ibu' => 'required|max:100',
             'rekomendasi' => 'required|max:100',
-            'upload_foto' => 'image|mimes:png,jpg|max:1024',
-            'upload_surat_izin_ortu' => 'file|mimes:pdf|max:102400',
-            'upload_cv' => 'file|mimes:pdf|max:102400',
-            'upload_ijazah' => 'file|mimes:pdf|max:102400',
-            'upload_raport' => 'file|mimes:pdf|max:102400',
-            'upload_rekomendasi' => 'file|mimes:pdf|max:102400',
+            'upload_foto' => 'required|image|mimes:png,jpg|max:1024',
+            'upload_surat_izin_ortu' => 'required|file|mimes:pdf|max:102400',
+            'upload_cv' => 'required|file|mimes:pdf|max:102400',
+            'upload_ijazah' => 'required|file|mimes:pdf|max:102400',
+            'upload_raport' => 'required|file|mimes:pdf|max:102400',
+            'upload_rekomendasi' => 'required|file|mimes:pdf|max:102400',
         ]);
+
+        dd($data);
 
         $jalurAktif = $this->jalurMasukService->getJalurAktif();
         $noPendaftaran = $this->pendaftarService->getNoPendaftaran();
@@ -122,13 +129,13 @@ class PendaftarController extends Controller
 
     public function checkStatus()
     {
-        $jalurAktif = $this->jalurMasukService->getJalurAktif();
-
         $noPendaftaran = session()->get('no_pendaftaran');
-
         if ($noPendaftaran) {
             return redirect('success-daftar');
         }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
 
         return view('check-status', [
             'jalur_aktif' => $jalurAktif
@@ -156,6 +163,84 @@ class PendaftarController extends Controller
         return redirect('success-daftar');
     }
 
+    public function cetakBuktiDaftar()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+        
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+        $statusBayar = $pendaftar->is_bayar ? Pendaftar::STATUS_SUDAH_BAYAR : Pendaftar::STATUS_BELUM_BAYAR;
+
+        return view('cetak-bukti-daftar', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+            'status_bayar' => $statusBayar,
+        ]);
+    }
+
+    public function generateBuktiDaftar()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+
+        $pendaftar->update(['is_cetak_bukti_daftar' => 1]);
+
+        $statusBayar = $pendaftar->is_bayar ? Pendaftar::STATUS_SUDAH_BAYAR : Pendaftar::STATUS_BELUM_BAYAR;
+        $pdf = $this->pdf->loadView('cetak-bukti-daftar', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+            'status_bayar' => $statusBayar,
+        ]);
+        return $pdf->download("$noPendaftaran-bukti-daftar.pdf");
+    }
+
+    public function previewKartuPeserta()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+
+        return view('preview-kartu-peserta', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+        ]);
+    }
+
+    public function generateKartuPeserta()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+
+        $pendaftar->update(['is_cetak_kartu' => 1]);
+
+        $pdf = $this->pdf->loadView('preview-kartu-peserta', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+        ]);
+        return $pdf->download("$noPendaftaran-kartu-peserta.pdf");
+    }
+
     public function pendaftarLogin()
     {
         return redirect('check-status');
@@ -165,5 +250,44 @@ class PendaftarController extends Controller
     {
         session()->flush();
         return redirect('check-status');
+    }
+
+    public function pembayaran()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+
+        return view('pembayaran', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+        ]);
+    }
+
+    public function uploadPembayaran(Request $request)
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $data = $request->validate([
+            'upload_pembayaran' => 'image|mimes:png,jpg|max:1024',
+        ]);
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->firstOrFail();
+        $publicPath = "$pendaftar->angkatan/$noPendaftaran";
+        $filePembayaran = $request->upload_pembayaran->store($publicPath, 'public');
+        $pendaftar->update([
+            'file_pembayaran' => $filePembayaran,
+            'is_bayar' => 1,
+            'status' => Pendaftar::STATUS_SUDAH_BAYAR,
+        ]);
+
+        return redirect()->to('/success-daftar')->withErrors('errors');
     }
 }
