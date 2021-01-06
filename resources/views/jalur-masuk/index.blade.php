@@ -7,19 +7,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="box">
-                        @if(Session::has('fail'))
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{Session::get('fail')}}
-                        </div>
-                        @endif
-
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
-                        </div>
-                        @endif
                         <div class="box-header with-border">
                             <h3 class="box-title">Manajemen Periode PMB</h3>
                         </div>
@@ -46,7 +33,12 @@
                                         <td>{{ $jalur->periode_buka }}</td>
                                         <td>{{ $jalur->periode_tutup }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm bg-red">edit</a>
+                                            <a href="{{ route('jalur-masuk.edit', $jalur->id) }}" class="btn btn-sm bg-green">edit</a>
+                                            <form action="{{ route('jalur-masuk.delete', $jalur->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

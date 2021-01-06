@@ -99,7 +99,7 @@ class PendaftarController extends Controller
 
         session()->put('no_pendaftaran', $noPendaftaran);
         
-        return redirect()->to('/success-daftar')->withErrors('errors');
+        return redirect()->to('/success-daftar')->with('success', 'Pendaftaran Berhasil');
     }
 
     /**

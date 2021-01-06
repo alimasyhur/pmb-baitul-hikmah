@@ -18,4 +18,9 @@ class JalurMasuk extends Model
         'periode_buka',
         'periode_tutup',
     ];
+
+    public function pendaftars()
+    {
+        return $this->hasMany(Pendaftar::class, 'id_jalur');
+    }
 }

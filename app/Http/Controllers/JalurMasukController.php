@@ -47,4 +47,35 @@ class JalurMasukController extends Controller
 
         return redirect('/admin/jalur-masuk')->with('success', 'Jalur Masuk Baru berhasil ditambahkan');
     }
+
+    public function edit($id)
+    {
+        $model = JalurMasuk::findOrFail($id);
+
+        return view('jalur-masuk.edit', compact('model'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate([
+            'nama' => 'required|max:100',
+            'tahun' => 'required|max:4',
+            'keterangan' => 'required|max:100',
+            'periode_buka' => 'required|date',
+            'periode_tutup' => 'required|date',
+        ]);
+        JalurMasuk::whereId($id)->update($data);
+
+        return redirect('/admin/jalur-masuk')->with('success', 'Jalur Masuk Baru berhasil di edit');
+    }
+
+    public function destroy($id)
+    {
+        $model = JalurMasuk::findOrFail($id);
+        if ($model->pendaftars()->count() > 0) {
+            return redirect('/admin/jalur-masuk')->with('warning', 'TIdak dapat dihapus. Sudah ada pendaftar di jalur ini');
+        }
+        $model->delete();
+        return redirect('/admin/jalur-masuk')->with('success', 'Jalur Masuk Baru berhasil di hapus');
+    }
 }

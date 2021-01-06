@@ -35,4 +35,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/jalur-masuk/create', [App\Http\Controllers\JalurMasukController::class, 'create'])->name('jalur-masuk.create');
 Route::post('/admin/jalur-masuk/store', [App\Http\Controllers\JalurMasukController::class, 'store'])->name('jalur-masuk.store');
-Route::get('/admin/jalur-masuk', [App\Http\Controllers\JalurMasukController::class, 'index'])->name('jalur-masuk');
+Route::patch('/admin/jalur-masuk/update/{id}', [App\Http\Controllers\JalurMasukController::class, 'update'])->name('jalur-masuk.update');
+Route::get('/admin/jalur-masuk/edit/{id}', [App\Http\Controllers\JalurMasukController::class, 'edit'])->name('jalur-masuk.edit');
+Route::get('/admin/jalur-masuk', [App\Http\Controllers\JalurMasukController::class, 'index'])->name('jalur-masuk.index');
+Route::delete('/admin/jalur-masuk/delete/{id}', [App\Http\Controllers\JalurMasukController::class, 'destroy'])->name('jalur-masuk.delete');
