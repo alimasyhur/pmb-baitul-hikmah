@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\PendaftarController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Yajra\DataTables\Facades\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,6 @@ Route::post('/upload-pembayaran', [PendaftarController::class, 'uploadPembayaran
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/jalur-masuk/create', [App\Http\Controllers\JalurMasukController::class, 'create'])->name('jalur-masuk.create');
+Route::post('/admin/jalur-masuk/store', [App\Http\Controllers\JalurMasukController::class, 'store'])->name('jalur-masuk.store');
+Route::get('/admin/jalur-masuk', [App\Http\Controllers\JalurMasukController::class, 'index'])->name('jalur-masuk');

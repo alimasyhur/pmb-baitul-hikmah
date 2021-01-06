@@ -227,7 +227,7 @@ return [
         ['header' => 'Dashboard Admin'],
         [
             'text' => 'Manajemen Periode PMB',
-            'url'  => 'admin/jalur-pmb',
+            'url'  => 'admin/jalur-masuk',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

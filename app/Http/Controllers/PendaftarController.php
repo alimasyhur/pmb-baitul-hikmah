@@ -75,8 +75,6 @@ class PendaftarController extends Controller
             'upload_rekomendasi' => 'required|file|mimes:pdf|max:102400',
         ]);
 
-        dd($data);
-
         $jalurAktif = $this->jalurMasukService->getJalurAktif();
         $noPendaftaran = $this->pendaftarService->getNoPendaftaran();
         $angkatan = $jalurAktif->tahun;

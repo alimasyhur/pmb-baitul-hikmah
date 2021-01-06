@@ -9,8 +9,10 @@ class JalurMasuk extends Model
 {
     use HasFactory;
 
+    protected $table = 'jalur_masuks';
+
     protected $fillable = [
-        'name',
+        'nama',
         'tahun',
         'keterangan',
         'periode_buka',
