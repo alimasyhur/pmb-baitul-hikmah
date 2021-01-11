@@ -47,8 +47,8 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="jenis_utusan">Utusan Pendaftar</label>
-                                <select class="form-control @error('jenis_utusan') is-invalid @enderror" id="jenis_utusan" name="jenis_pendaftar">
+                                <label for="jenis_pendaftar">Utusan Pendaftar</label>
+                                <select class="form-control @error('jenis_pendaftar') is-invalid @enderror" id="jenis_pendaftar" name="jenis_pendaftar">
                                     <option value="">-- Pilih Jenis Utusan --</option>
                                     <option value="Utusan Lembaga">Utusan Lembaga</option>
                                     <option value="Pribadi">Pribadi</option>

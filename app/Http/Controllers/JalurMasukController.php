@@ -39,6 +39,7 @@ class JalurMasukController extends Controller
             'nama' => 'required|max:100',
             'tahun' => 'required|max:4',
             'keterangan' => 'required|max:100',
+            'biaya_pendaftaran' => 'required|max:100',
             'periode_buka' => 'required|date',
             'periode_tutup' => 'required|date',
         ]);
@@ -61,6 +62,7 @@ class JalurMasukController extends Controller
             'nama' => 'required|max:100',
             'tahun' => 'required|max:4',
             'keterangan' => 'required|max:100',
+            'biaya_pendaftaran' => 'required|max:100',
             'periode_buka' => 'required|date',
             'periode_tutup' => 'required|date',
         ]);

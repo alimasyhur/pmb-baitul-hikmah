@@ -39,3 +39,11 @@ Route::patch('/admin/jalur-masuk/update/{id}', [App\Http\Controllers\JalurMasukC
 Route::get('/admin/jalur-masuk/edit/{id}', [App\Http\Controllers\JalurMasukController::class, 'edit'])->name('jalur-masuk.edit');
 Route::get('/admin/jalur-masuk', [App\Http\Controllers\JalurMasukController::class, 'index'])->name('jalur-masuk.index');
 Route::delete('/admin/jalur-masuk/delete/{id}', [App\Http\Controllers\JalurMasukController::class, 'destroy'])->name('jalur-masuk.delete');
+
+Route::get('/admin/pendaftar/create', [App\Http\Controllers\JalurMasukController::class, 'create'])->name('jalur-masuk.create');
+Route::post('/admin/pendaftar/store', [App\Http\Controllers\JalurMasukController::class, 'store'])->name('jalur-masuk.store');
+Route::patch('/admin/pendaftar/update/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'update'])->name('pendaftar.update');
+Route::get('/admin/pendaftar/edit/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'edit'])->name('pendaftar.edit');
+Route::get('/admin/pendaftar/verifikasi-pembayaran/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'verifikasiPembayaran'])->name('pendaftar.verifikasi-pembayaran');
+Route::patch('/admin/pendaftar/update-pembayaran/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'updatePembayaran'])->name('pendaftar.update-pembayaran');
+Route::get('/admin/pendaftar', [App\Http\Controllers\AdminPendaftarController::class, 'index'])->name('pendaftar.index');

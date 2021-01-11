@@ -18,6 +18,7 @@ class CreateJalurMasuksTable extends Migration
             $table->string('nama');
             $table->integer('tahun');
             $table->string('keterangan');
+            $table->string('biaya_pendaftaran');
             $table->date('periode_buka');
             $table->date('periode_tutup');
             $table->timestamps();

@@ -32,6 +32,12 @@
                             </div>
 
                             <div class="form-group col-md-12">
+                                <label for="biaya_pendaftaran">Biaya Pendaftaran</label>
+                                <input type="text" placeholder="Masukkan Biaya Pendaftaran" class="form-control @error('biaya_pendaftaran') is-invalid @enderror" id="biaya_pendaftaran" name="biaya_pendaftaran" value="{{ $model->biaya_pendaftaran }}">
+                                @error('biaya_pendaftaran') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="form-group col-md-12">
                                 <label for="inputPeriodeBuka">Periode Buka</label>
                                 <input type="date" placeholder="Masukkan Periode Buka" class="form-control @error('periode_buka') is-invalid @enderror" id="inputPeriodeBuka" name="periode_buka" value="{{ $model->periode_buka }}">
                                 @error('periode_buka') <span class="text-danger">{{ $message }}</span> @enderror

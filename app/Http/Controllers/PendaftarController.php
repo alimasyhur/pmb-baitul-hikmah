@@ -132,8 +132,7 @@ class PendaftarController extends Controller
             return redirect('success-daftar');
         }
 
-        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
-        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+        $jalurAktif = $this->jalurMasukService->getJalurAktif();
 
         return view('check-status', [
             'jalur_aktif' => $jalurAktif
@@ -286,6 +285,6 @@ class PendaftarController extends Controller
             'status' => Pendaftar::STATUS_SUDAH_BAYAR,
         ]);
 
-        return redirect()->to('/success-daftar')->withErrors('errors');
+        return redirect()->to('/success-daftar')->with('success', 'Bukti Pembayaran berhasil di upload');
     }
 }

@@ -232,14 +232,14 @@ return [
         ],
         [
             'text' => 'Manajemen Pendaftar PMB',
-            'url'  => 'admin/pendaftar-pmb',
+            'url'  => 'admin/pendaftar',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'Manajemen Mahasantri',
-            'url'  => 'admin/mahasantri',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        // [
+        //     'text' => 'Manajemen Mahasantri',
+        //     'url'  => 'admin/mahasantri',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
     ],
 
     /*

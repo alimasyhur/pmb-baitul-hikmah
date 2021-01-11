@@ -13,13 +13,14 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <a class="btn btn-sm bg-blue" href="{{ route('jalur-masuk.create') }}">Tambah</a>
-                            <table class="table table-bordered">
+                            <table class="table table-sm table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th style="width: 10px">#</th>
+                                        <th>#</th>
                                         <th>Nama</th>
                                         <th>Tahun</th>
                                         <th>Deskripsi</th>
+                                        <th>Biaya Pendaftaran</th>
                                         <th>Periode Buka</th>
                                         <th>Periode Tutup</th>
                                         <th>Action</th>
@@ -30,14 +31,15 @@
                                         <td>{{ $jalur->nama }}</td>
                                         <td>{{ $jalur->tahun }}</td>
                                         <td>{{ $jalur->keterangan }}</td>
+                                        <td>{{ $jalur->biaya_pendaftaran }}</td>
                                         <td>{{ $jalur->periode_buka }}</td>
                                         <td>{{ $jalur->periode_tutup }}</td>
                                         <td>
-                                            <a href="{{ route('jalur-masuk.edit', $jalur->id) }}" class="btn btn-sm bg-green">edit</a>
+                                            <a href="{{ route('jalur-masuk.edit', $jalur->id) }}" class="btn btn-block btn-outline-primary btn-xs">edit</a>
                                             <form action="{{ route('jalur-masuk.delete', $jalur->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-sm btn-danger" type="submit">Hapus</button>
+                                                <button class="btn btn-block btn-outline-danger btn-xs" type="submit">delete</button>
                                             </form>
                                         </td>
                                     </tr>

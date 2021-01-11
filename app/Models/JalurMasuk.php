@@ -15,6 +15,7 @@ class JalurMasuk extends Model
         'nama',
         'tahun',
         'keterangan',
+        'biaya_pendaftaran',
         'periode_buka',
         'periode_tutup',
     ];

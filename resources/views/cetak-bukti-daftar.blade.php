@@ -94,9 +94,6 @@
                         </table>
                     </div>
                 </div>
-                <div class="text-center pdf-btn">
-                    <a href="{{ route('generate-bukti-daftar') }}" class="btn btn-primary">Generate PDF</a>
-                </div>
             </div>
         </div>
     </div>
