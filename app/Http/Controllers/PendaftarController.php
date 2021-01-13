@@ -43,16 +43,16 @@ class PendaftarController extends Controller
 
     public function daftar(Request $request)
     {
-        $request['email'] = 'jegrag4ever@gmail.com';
-        $request['no_hp'] = '08156558085';
-        $request['asal_sekolah'] = 'SMA Negeri 3 Surakarta';
-        $request['alamat_sekolah'] = 'Solo';
-        $request['tempat_lahir'] = 'Sukoharjo';
-        $request['nama'] = 'Muhammad Ali Masyhur Khoiruddin';
-        $request['alamat'] = 'Sukoharjo';
-        $request['nama_ayah'] = 'Safawi';
-        $request['nama_ibu'] = 'Nuryani Rahayu';
-        $request['rekomendasi'] = 'Tokoh Masyarakat';
+        // $request['email'] = 'jegrag4ever@gmail.com';
+        // $request['no_hp'] = '08156558085';
+        // $request['asal_sekolah'] = 'SMA Negeri 3 Surakarta';
+        // $request['alamat_sekolah'] = 'Solo';
+        // $request['tempat_lahir'] = 'Sukoharjo';
+        // $request['nama'] = 'Muhammad Ali Masyhur Khoiruddin';
+        // $request['alamat'] = 'Sukoharjo';
+        // $request['nama_ayah'] = 'Safawi';
+        // $request['nama_ibu'] = 'Nuryani Rahayu';
+        // $request['rekomendasi'] = 'Tokoh Masyarakat';
 
         $data = $request->validate([
             'email' => 'required|email',
@@ -286,5 +286,23 @@ class PendaftarController extends Controller
         ]);
 
         return redirect()->to('/success-daftar')->with('success', 'Bukti Pembayaran berhasil di upload');
+    }
+
+    public function generateCaraPembayaran()
+    {
+        $noPendaftaran = session()->get('no_pendaftaran');
+
+        if (!$noPendaftaran) {
+            return redirect('check-status');
+        }
+
+        $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
+
+        $pdf = $this->pdf->loadView('preview-cara-pembayaran', [
+            'jalur_aktif' => $jalurAktif,
+            'pendaftar' => $pendaftar,
+        ]);
+        return $pdf->download("$noPendaftaran-cara-pembayaran.pdf");
     }
 }

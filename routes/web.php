@@ -29,6 +29,7 @@ Route::get('/preview-kartu-peserta', [PendaftarController::class, 'previewKartuP
 Route::get('/generate-kartu-peserta', [PendaftarController::class, 'generateKartuPeserta'])->name('generate-kartu-peserta');
 Route::get('/pembayaran', [PendaftarController::class, 'pembayaran'])->name('pembayaran');
 Route::post('/upload-pembayaran', [PendaftarController::class, 'uploadPembayaran'])->name('upload-pembayaran');
+Route::get('/generate-cara-pembayaran', [PendaftarController::class, 'generateCaraPembayaran'])->name('generate-cara-pembayaran');
 
 Auth::routes();
 

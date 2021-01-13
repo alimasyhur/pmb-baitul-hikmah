@@ -34,9 +34,9 @@
                                             @elseif($pendaftar->is_bayar == 1)
                                             <a class="btn btn-block btn-default btn-xs" href="{{ route('pendaftar.verifikasi-pembayaran', $pendaftar->id) }}">sudah bayar. belum diverifikasi</a>
                                             @elseif($pendaftar->is_bayar == 2)
-                                            <span class="btn btn-block btn-danger btn-xs">sudah bayar. bukti tidak valid</span>
-                                            @elseif($pendaftar->is_bayar == 3)
                                             <span class="btn btn-block btn-success btn-xs">sudah bayar. bukti valid</span>
+                                            @elseif($pendaftar->is_bayar == 3)
+                                            <span class="btn btn-block btn-danger btn-xs">sudah bayar. bukti tidak valid</span>
                                             @endif
                                         </td>
                                         <td>

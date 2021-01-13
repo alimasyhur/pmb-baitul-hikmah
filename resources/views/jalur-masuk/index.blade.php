@@ -30,7 +30,7 @@
                                         <td>{{ ++$idx }}</td>
                                         <td>{{ $jalur->nama }}</td>
                                         <td>{{ $jalur->tahun }}</td>
-                                        <td>{{ $jalur->keterangan }}</td>
+                                        <td>{!! $jalur->keterangan !!}</td>
                                         <td>{{ $jalur->biaya_pendaftaran }}</td>
                                         <td>{{ $jalur->periode_buka }}</td>
                                         <td>{{ $jalur->periode_tutup }}</td>

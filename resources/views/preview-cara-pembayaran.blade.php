@@ -41,7 +41,7 @@
         <div class="col-md-8 section offset-md-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2>Kartu Peserta - {{ $jalur_aktif->nama }} Tahun {{ $jalur_aktif->tahun }}</h2>
+                    <h2>Petunjuk Cara Pembayaran - {{ $jalur_aktif->nama }} Tahun {{ $jalur_aktif->tahun }}</h2>
                 </div>
                 <div class="panel-body">
                     <div class="main-div">
@@ -52,29 +52,30 @@
                                     <td>{{ $pendaftar->no_pendaftaran }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email</td>
-                                    <td>{{ $pendaftar->email }}</td>
-                                </tr>
-                                <tr>
                                     <td>Nama Lengkap</td>
                                     <td>{{ $pendaftar->nama }}</td>
                                 </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <p>Silakan Lakukan Transfer Pembayaran Pendaftaran ke Rekening dibawah ini.</p>
+                        <table class="table table-bordered">
+                            <tbody>
                                 <tr>
-                                    <td>No HP/Telp</td>
-                                    <td>{{ $pendaftar->no_hp }}</td>
+                                    <td>Nama Bank</td>
+                                    <td>BRI</td>
                                 </tr>
                                 <tr>
-                                    <td>Tempat, Tanggal Lahir</td>
-                                    <td>{{ $pendaftar->tempat_lahir }}, {{ $pendaftar->tanggal_lahir }}</td>
+                                    <td>Nomor Rekening</td>
+                                    <td>6912-01-023010-53-0</td>
                                 </tr>
                                 <tr>
-                                    <td>Alamat Lengkap</td>
-                                    <td>{{ $pendaftar->alamat }}</td>
+                                    <td>Atas Nama</td>
+                                    <td>SYAHIDAN YAHYA</td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        {!! $jalur_aktif->keterangan !!}
+                        <p>Harap mencantumkan No. Pendaftaran Anda {{ $pendaftar->no_pendaftaran }} dalam catatan transfer Anda untuk memudahkan Kami dalam melakukan verifikasi Bukti Pembayaran Anda.</p>
                     </div>
                 </div>
             </div>
