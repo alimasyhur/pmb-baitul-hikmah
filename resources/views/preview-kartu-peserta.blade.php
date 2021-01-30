@@ -4,6 +4,7 @@
 <head>
     <title>Generate PDF Laravel 8 - phpcodingstuff.com</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <style type="text/css">
     h2 {
@@ -18,7 +19,7 @@
     }
 
     body {
-        background: #f2f2f2;
+        /* background: #f2f2f2; */
     }
 
     .section {
@@ -49,27 +50,31 @@
                             <tbody>
                                 <tr>
                                     <td>No. Pendaftaran</td>
-                                    <td>{{ $pendaftar->no_pendaftaran }}</td>
+                                    <td width="120 px">{{ $pendaftar->no_pendaftaran }}
+                                    </td>
+                                    <td>
+                                        <img src="{{ public_path($filepath) }}" style="width: 80px; height: 100px">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td>{{ $pendaftar->email }}</td>
+                                    <td colspan="2">{{ $pendaftar->email }}</td>
                                 </tr>
                                 <tr>
                                     <td>Nama Lengkap</td>
-                                    <td>{{ $pendaftar->nama }}</td>
+                                    <td colspan="2">{{ $pendaftar->nama }}</td>
                                 </tr>
                                 <tr>
                                     <td>No HP/Telp</td>
-                                    <td>{{ $pendaftar->no_hp }}</td>
+                                    <td colspan="2">{{ $pendaftar->no_hp }}</td>
                                 </tr>
                                 <tr>
                                     <td>Tempat, Tanggal Lahir</td>
-                                    <td>{{ $pendaftar->tempat_lahir }}, {{ $pendaftar->tanggal_lahir }}</td>
+                                    <td colspan="2">{{ $pendaftar->tempat_lahir }}, {{ $pendaftar->tanggal_lahir }}</td>
                                 </tr>
                                 <tr>
                                     <td>Alamat Lengkap</td>
-                                    <td>{{ $pendaftar->alamat }}</td>
+                                    <td colspan="2">{{ $pendaftar->alamat }}</td>
                                 </tr>
                             </tbody>
                         </table>

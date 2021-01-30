@@ -70,10 +70,10 @@
                             <a href="/pembayaran">Klik disini</a>
                             @endif
                         </li>
-                        <li>Lakukan Konfirmasi Bukti Pembayaran Anda untuk mempercepat verifikasi Data Pendaftaran Anda. @if($pendaftar->is_bayar == 1) <a href="https://api.whatsapp.com/send?phone=6285770189272&text=Assalamu'alaikum.%20Saya%20Telah%20melakukan%20transfer%20bukti%20pembayaran%20pendaftaran.%20Mohon%20segera%20diverifikasi%20ya.%20Nomor%20Pendaftaran:%20{{ $pendaftar->no_pendaftaran }}" target="_blank"><b>Konfirmasi WA</b></a> @endif</li>
+                        <li>Lakukan Konfirmasi Bukti Pembayaran Anda untuk mempercepat verifikasi Data Pendaftaran Anda. @if($pendaftar->is_bayar == 1) <a href="https://api.whatsapp.com/send?phone=62895807880040&text=Assalamu'alaikum.%20Saya%20Telah%20melakukan%20transfer%20bukti%20pembayaran%20pendaftaran.%20Mohon%20segera%20diverifikasi%20ya.%20Nomor%20Pendaftaran:%20{{ $pendaftar->no_pendaftaran }}" target="_blank"><b>Konfirmasi WA</b></a> @endif</li>
                         <li>Lakukan Cetak Kartu Peserta PMB - Baitul Hikmah.
                             @if($pendaftar->is_bayar == 2)
-                            <a href="{{ route('generate-kartu-peserta') }}" class="btn btn-primary btn-xs" target="_blank">Cetak Kartu Peserta</a>
+                            <a href="{{ route('generate-kartu-peserta') }}" class="btn btn-primary btn-xs">Cetak Kartu Peserta</a>
                             @endif
                         </li>
                     </ol>

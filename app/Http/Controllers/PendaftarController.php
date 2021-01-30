@@ -8,6 +8,7 @@ use App\Services\JalurMasukService;
 use App\Services\PendaftarService;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PendaftarController extends Controller
@@ -67,7 +68,7 @@ class PendaftarController extends Controller
             'nama_ayah' => 'required|max:100',
             'nama_ibu' => 'required|max:100',
             'rekomendasi' => 'required|max:100',
-            'upload_foto' => 'required|image|mimes:png,jpg|max:1024',
+            'upload_foto' => 'required|image|mimes:png,jpg|max:3072',
             'upload_surat_izin_ortu' => 'required|file|mimes:pdf|max:102400',
             'upload_cv' => 'required|file|mimes:pdf|max:102400',
             'upload_ijazah' => 'required|file|mimes:pdf|max:102400',
@@ -210,11 +211,13 @@ class PendaftarController extends Controller
         }
 
         $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $filepath = Storage::url($pendaftar->file_foto);
         $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
 
         return view('preview-kartu-peserta', [
             'jalur_aktif' => $jalurAktif,
             'pendaftar' => $pendaftar,
+            'filepath' => $filepath,
         ]);
     }
 
@@ -227,6 +230,7 @@ class PendaftarController extends Controller
         }
 
         $pendaftar = Pendaftar::where('no_pendaftaran', $noPendaftaran)->first();
+        $filepath = Storage::url($pendaftar->file_foto);
         $jalurAktif = JalurMasuk::where('id', $pendaftar->id_jalur)->first();
 
         $pendaftar->update(['is_cetak_kartu' => 1]);
@@ -234,8 +238,9 @@ class PendaftarController extends Controller
         $pdf = $this->pdf->loadView('preview-kartu-peserta', [
             'jalur_aktif' => $jalurAktif,
             'pendaftar' => $pendaftar,
+            'filepath' => $filepath,
         ]);
-        return $pdf->download("$noPendaftaran-kartu-peserta.pdf");
+        return $pdf->setPaper('a4')->download("$noPendaftaran-kartu-peserta.pdf");
     }
 
     public function pendaftarLogin()

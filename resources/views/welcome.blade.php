@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="upload_ijazah">Upload File Ijazah <small>(File Format: pdf)</small></label>
+                                <label for="upload_ijazah">Upload File Ijazah/Akte Kelahiran <small>(File Format: pdf)</small></label>
                                 <input type="file" class="form-control @error('upload_ijazah') is-invalid @enderror id=" upload_ijazah" name="upload_ijazah">
                                 @error('upload_ijazah') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>

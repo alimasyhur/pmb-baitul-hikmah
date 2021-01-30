@@ -18,7 +18,7 @@
     }
 
     body {
-        background: #f2f2f2;
+        /* background: #f2f2f2; */
     }
 
     .section {
@@ -63,15 +63,15 @@
                             <tbody>
                                 <tr>
                                     <td>Nama Bank</td>
-                                    <td>BRI</td>
+                                    <td>BNI Syariah</td>
                                 </tr>
                                 <tr>
                                     <td>Nomor Rekening</td>
-                                    <td>6912-01-023010-53-0</td>
+                                    <td>0803067995</td>
                                 </tr>
                                 <tr>
                                     <td>Atas Nama</td>
-                                    <td>SYAHIDAN YAHYA</td>
+                                    <td>Mohammad Hasan Rifai</td>
                                 </tr>
                             </tbody>
                         </table>
