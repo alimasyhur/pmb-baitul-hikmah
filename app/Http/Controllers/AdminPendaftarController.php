@@ -24,8 +24,23 @@ class AdminPendaftarController extends Controller
     public function index()
     {
         $jalurAktif = $this->jalurMasukService->getJalurAktif();
+        if (!$jalurAktif) {
+            return redirect('/admin/jalur-masuk')->with('error', 'Tidak dapat dibuka. Jalur Masuk tidak Aktif');;
+        }
         $pendaftar = Pendaftar::all();
         return view('pendaftar.index', [
+            'model' => $pendaftar,
+            'jalurAktif' => $jalurAktif
+        ]);
+    }
+
+    public function seleksi($idJalur)
+    {
+        $jalurAktif = JalurMasuk::whereId($idJalur)->first();
+        $pendaftar = Pendaftar::where('id_jalur', $idJalur)
+            ->where('is_bayar', 2)
+            ->get();
+        return view('pendaftar.seleksi', [
             'model' => $pendaftar,
             'jalurAktif' => $jalurAktif
         ]);
@@ -53,6 +68,19 @@ class AdminPendaftarController extends Controller
         JalurMasuk::create($data);
 
         return redirect('/admin/pendaftar')->with('success', 'Jalur Masuk Baru berhasil ditambahkan');
+    }
+
+    public function show($id)
+    {
+        $pendaftar = Pendaftar::findOrFail($id);
+        $jalurAktif = JalurMasuk::whereId($pendaftar->id_jalur)->first();
+        $foto = Storage::url($pendaftar->file_foto);
+
+        return view('pendaftar.show', [
+            'pendaftar' => $pendaftar,
+            'jalurAktif' => $jalurAktif,
+            'foto' => $foto,
+        ]);
     }
 
     public function edit($id)

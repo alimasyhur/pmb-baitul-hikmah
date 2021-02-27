@@ -16,7 +16,7 @@ class JalurMasukService
         $this->jalurMasuk = $jalurMasuk;
     }
 
-    public function getJalurAktif(): object
+    public function getJalurAktif()
     {
         $dateNow = Carbon::now();
         $totalJalurAktif = $this->getTotalJalurAktif();
@@ -25,12 +25,27 @@ class JalurMasukService
         }
         
         if ($totalJalurAktif == 0) {
-            abort(400, 'Tidak ada PMB Aktif');
+            return $totalJalurAktif;
         }
 
         $jalurMasuk = $this->jalurMasuk
             ->where('periode_buka', '<=', $dateNow)
             ->where('periode_tutup', '>=', $dateNow);
+        return $jalurMasuk->first();
+    }
+
+    public function hasJalurAktif()
+    {
+        $totalJalurAktif = $this->hasOneJalurAktif();
+        if ($totalJalurAktif > 1) {
+            abort(400, 'Ada lebih dari 2 Jalur Masuk Aktif. Silakan atur jalur masuk aktif Anda');
+        }
+
+        if ($totalJalurAktif == 0) {
+            return $totalJalurAktif;
+        }
+
+        $jalurMasuk = $this->jalurMasuk->where('is_aktif', 1);
         return $jalurMasuk->first();
     }
 
@@ -40,6 +55,15 @@ class JalurMasukService
         $jalurMasuk = $this->jalurMasuk
             ->where('periode_buka', '<=', $dateNow)
             ->where('periode_tutup', '>=', $dateNow)
+            ->count();
+
+        return $jalurMasuk;
+    }
+
+    public function hasOneJalurAktif()
+    {
+        $jalurMasuk = $this->jalurMasuk
+            ->where('is_aktif', 1)
             ->count();
 
         return $jalurMasuk;

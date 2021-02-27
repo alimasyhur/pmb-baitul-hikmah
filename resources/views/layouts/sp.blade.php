@@ -35,13 +35,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="/success-daftar" class="nav-link">Status</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Cetak</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                <li><a href="#" class="dropdown-item">Bukti Pendaftaran</a></li>
-                                <li><a href="#" class="dropdown-item">Kartu Peserta PMB</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a href="/pendaftar-logout" class="nav-link">Logout ({{ session('no_pendaftaran') }})</a>
                         </li>

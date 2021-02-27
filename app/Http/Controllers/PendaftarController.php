@@ -36,6 +36,9 @@ class PendaftarController extends Controller
     public function home()
     {
         $jalurAktif = $this->jalurMasukService->getJalurAktif();
+        if (!$jalurAktif) {
+            return redirect('jalur-tutup');
+        }
 
         return view('welcome', [
             'jalur_aktif' => $jalurAktif
@@ -133,7 +136,10 @@ class PendaftarController extends Controller
             return redirect('success-daftar');
         }
 
-        $jalurAktif = $this->jalurMasukService->getJalurAktif();
+        $jalurAktif = $this->jalurMasukService->hasJalurAktif();
+        if (!$jalurAktif) {
+            return redirect('jalur-tutup');
+        }
 
         return view('check-status', [
             'jalur_aktif' => $jalurAktif
@@ -152,8 +158,7 @@ class PendaftarController extends Controller
             ->first();
 
         if (!$pendaftar) {
-            session()->flush('message', 'Kombinasi No. Pendaftaran dan Tanggal Lahir tidak tepat');
-            return redirect('check-status');
+            return redirect('check-status')->with('error', 'Kombinasi No. Pendaftaran dan Tanggal Lahir tidak tepat');
         }
         
         session()->put('no_pendaftaran', $pendaftar->no_pendaftaran);
@@ -246,6 +251,11 @@ class PendaftarController extends Controller
     public function pendaftarLogin()
     {
         return redirect('check-status');
+    }
+
+    public function jalurTutup()
+    {
+        return view('jalur-tutup');
     }
 
     public function pendaftarLogout()

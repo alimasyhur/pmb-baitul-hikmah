@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manajemen Pendaftar {{ $jalurAktif->nama }} {{ $jalurAktif->tahun }}</h3>
+                            <h3 class="box-title">Seleksi Pendaftar {{ $jalurAktif->nama }} {{ $jalurAktif->tahun }}</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -42,13 +42,13 @@
                                         </td>
                                         <td>
                                             @if($pendaftar->is_cetak_kartu)
-                                                <button class="btn btn-block btn-outline-primary btn-xs">Sudah Cetak</button>
+                                            <button class="btn btn-block btn-outline-primary btn-xs">Sudah Cetak</button>
                                             @else
-                                                <button class="btn btn-block btn-outline-danger btn-xs">Belum Cetak</button>
+                                            <button class="btn btn-block btn-outline-danger btn-xs">Belum Cetak</button>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('pendaftar.edit', $pendaftar->id) }}" class="btn btn-block btn-outline-primary btn-xs">edit</a>
+                                            <a href="{{ route('pendaftar.show', $pendaftar->id) }}" class="btn btn-block btn-outline-success btn-xs">detail</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -56,6 +56,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <a href="{{ route('jalur-masuk.index') }}" class="btn btn-primary">Kembali</a>
                     </div>
                 </div>
             </div>

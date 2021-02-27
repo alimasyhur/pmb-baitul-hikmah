@@ -42,6 +42,7 @@ class JalurMasukController extends Controller
             'biaya_pendaftaran' => 'required|max:100',
             'periode_buka' => 'required|date',
             'periode_tutup' => 'required|date',
+            'is_aktif' => 'required|integer',
         ]);
 
         JalurMasuk::create($data);
@@ -65,6 +66,7 @@ class JalurMasukController extends Controller
             'biaya_pendaftaran' => 'required|max:100',
             'periode_buka' => 'required|date',
             'periode_tutup' => 'required|date',
+            'is_aktif' => 'required|integer',
         ]);
         JalurMasuk::whereId($id)->update($data);
 

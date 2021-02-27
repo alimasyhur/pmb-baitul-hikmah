@@ -30,6 +30,7 @@ Route::get('/generate-kartu-peserta', [PendaftarController::class, 'generateKart
 Route::get('/pembayaran', [PendaftarController::class, 'pembayaran'])->name('pembayaran');
 Route::post('/upload-pembayaran', [PendaftarController::class, 'uploadPembayaran'])->name('upload-pembayaran');
 Route::get('/generate-cara-pembayaran', [PendaftarController::class, 'generateCaraPembayaran'])->name('generate-cara-pembayaran');
+Route::get('/jalur-tutup', [PendaftarController::class, 'jalurTutup'])->name('jalur-tutup');
 
 Auth::routes();
 
@@ -47,4 +48,6 @@ Route::patch('/admin/pendaftar/update/{id}', [App\Http\Controllers\AdminPendafta
 Route::get('/admin/pendaftar/edit/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'edit'])->name('pendaftar.edit');
 Route::get('/admin/pendaftar/verifikasi-pembayaran/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'verifikasiPembayaran'])->name('pendaftar.verifikasi-pembayaran');
 Route::patch('/admin/pendaftar/update-pembayaran/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'updatePembayaran'])->name('pendaftar.update-pembayaran');
+Route::get('/admin/pendaftar/seleksi/{idJalur}', [App\Http\Controllers\AdminPendaftarController::class, 'seleksi'])->name('pendaftar.seleksi');
+Route::get('/admin/pendaftar/show/{id}', [App\Http\Controllers\AdminPendaftarController::class, 'show'])->name('pendaftar.show');
 Route::get('/admin/pendaftar', [App\Http\Controllers\AdminPendaftarController::class, 'index'])->name('pendaftar.index');

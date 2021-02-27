@@ -18,6 +18,7 @@ class JalurMasuk extends Model
         'biaya_pendaftaran',
         'periode_buka',
         'periode_tutup',
+        'is_aktif',
     ];
 
     public function pendaftars()

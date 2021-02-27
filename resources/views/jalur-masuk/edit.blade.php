@@ -48,8 +48,19 @@
                                 <input type="date" placeholder="Masukkan Periode Tutup" class="form-control @error('periode_tutup') is-invalid @enderror" id="inputPeriodeTutup" name="periode_tutup" value="{{ $model->periode_tutup }}">
                                 @error('periode_tutup') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="is_aktif">Status Aktif</label>
+                                <select class="form-control @error('is_aktif') is-invalid @enderror" id="is_aktif" name="is_aktif">
+                                    <option value="" @if($model->is_aktif == "") selected @endif >-- Pilih Status Aktif --</option>
+                                    <option value=0 @if($model->is_aktif == 0) selected @endif >Tidak</option>
+                                    <option value=1 @if($model->is_aktif == 1) selected @endif >Ya</option>
+                                </select>
+                                @error('is_aktif') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                            <a href="{{ route('jalur-masuk.index') }}" class="btn btn-primary">Kembali</a>
                     </form>
                 </div>
                 <!-- /.card-body -->

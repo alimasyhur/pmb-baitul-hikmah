@@ -23,6 +23,7 @@
                                         <th>Biaya Pendaftaran</th>
                                         <th>Periode Buka</th>
                                         <th>Periode Tutup</th>
+                                        <th>Status Aktif</th>
                                         <th>Action</th>
                                     </tr>
                                     @foreach ($jalurMasuk as $idx => $jalur)
@@ -34,7 +35,9 @@
                                         <td>{{ $jalur->biaya_pendaftaran }}</td>
                                         <td>{{ $jalur->periode_buka }}</td>
                                         <td>{{ $jalur->periode_tutup }}</td>
+                                        <td>@if($jalur->is_aktif) Ya @else Tidak @endif</td>
                                         <td>
+                                            <a href="{{ route('pendaftar.seleksi', $jalur->id) }}" class="btn btn-block btn-outline-success btn-xs">seleksi</a>
                                             <a href="{{ route('jalur-masuk.edit', $jalur->id) }}" class="btn btn-block btn-outline-primary btn-xs">edit</a>
                                             <form action="{{ route('jalur-masuk.delete', $jalur->id)}}" method="post">
                                                 @csrf
