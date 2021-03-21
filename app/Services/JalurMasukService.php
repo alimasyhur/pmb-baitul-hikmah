@@ -18,7 +18,7 @@ class JalurMasukService
 
     public function getJalurAktif()
     {
-        $dateNow = Carbon::now();
+        $dateNow = Carbon::today();
         $totalJalurAktif = $this->getTotalJalurAktif();
         if ($totalJalurAktif > 1) {
             abort(400, 'Ada lebih dari 2 Jalur Masuk Aktif. Silakan atur jalur masuk aktif Anda');
@@ -51,7 +51,7 @@ class JalurMasukService
 
     public function getTotalJalurAktif()
     {
-        $dateNow = Carbon::now();
+        $dateNow = Carbon::today();
         $jalurMasuk = $this->jalurMasuk
             ->where('periode_buka', '<=', $dateNow)
             ->where('periode_tutup', '>=', $dateNow)

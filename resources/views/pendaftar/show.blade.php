@@ -77,6 +77,10 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>File Bukti Pendaftaran</td>
+                                <td colspan="2"><a href="{{ url('storage/' . $pendaftar->file_pembayaran) }}" target="_blank">Open File</a></td>
+                            </tr>
+                            <tr>
                                 <td>File Raport</td>
                                 <td colspan="2"><a href="{{ url('storage/' . $pendaftar->file_raport) }}" target="_blank">Open File</a></td>
                             </tr>

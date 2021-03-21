@@ -54,7 +54,6 @@ class PendaftarForm extends Component
 
     public function savePendaftar(PendaftarService $pendaftarService, JalurMasukService $jalurMasukService)
     {
-        dd('INI');
         // session()->flush();
 
         // $this->email = 'jegrag4ever@gmail.com';

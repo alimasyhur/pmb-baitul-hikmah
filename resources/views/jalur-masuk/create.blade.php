@@ -51,9 +51,9 @@
                             <div class="form-group col-md-6">
                                 <label for="is_aktif">Status Aktif</label>
                                 <select class="form-control @error('is_aktif') is-invalid @enderror" id="is_aktif" name="is_aktif">
-                                    <option value="" @if($model->is_aktif == "") selected @endif >-- Pilih Status Aktif --</option>
-                                    <option value=0 @if($model->is_aktif == 0) selected @endif >Tidak</option>
-                                    <option value=1 @if($model->is_aktif == 1) selected @endif >Ya</option>
+                                    <option value="">-- Pilih Status Aktif --</option>
+                                    <option value=0>Tidak</option>
+                                    <option value=1>Ya</option>
                                 </select>
                                 @error('is_aktif') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>

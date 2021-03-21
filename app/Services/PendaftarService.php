@@ -19,7 +19,7 @@ class PendaftarService
 
     public function getNoPendaftaran(): string
     {
-        $dateNow = Carbon::now();
+        $dateNow = Carbon::today();
         $nomor = '001';
         $jalurMasuk = $this->jalurMasuk
             ->where('periode_buka', '<=', $dateNow)
